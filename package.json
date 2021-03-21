@@ -1,0 +1,14 @@
+{
+  "name": "salon-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/murillo-romeu/salon-backend.git",
+  "author": "Murillo Romeu <murillo@sysconsulting.com.br>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}
