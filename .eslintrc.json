@@ -12,6 +12,9 @@
   "plugins": ["@typescript-eslint"],
   "rules": {
     "camelcase":"off",
+    "no-unused-vars": ["error", {
+      "argsIgnorePattern": "_"
+    }],
     "class-methods-use-this":"off",
     "import/extensions":[
       "error",
