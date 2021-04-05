@@ -11,9 +11,13 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "no-underscore-dangle": "off",
     "camelcase":"off",
+    "no-useless-constructor": "off",
+    "no-empty-function":"off",
     "no-unused-vars": ["error", {
-      "argsIgnorePattern": "_"
+      "argsIgnorePattern": "_",
+      "args": "none"
     }],
     "class-methods-use-this":"off",
     "import/extensions":[

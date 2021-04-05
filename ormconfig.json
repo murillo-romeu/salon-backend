@@ -5,9 +5,9 @@
   "username": "postgres",
   "password": "docker",
   "database": "salon",
-  "migrations": ["./src/database/migrations/*.ts"],
-  "entities": ["./src/models/*.ts"],
+  "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+  "entities": ["./src/models/**/infra/typeorm/entities/*.ts"],
   "cli": {
-    "migrationsDir" : "./src/database/migrations"
+    "migrationsDir" : "./src/shared/infra/typeorm/migrations"
   }
 }
