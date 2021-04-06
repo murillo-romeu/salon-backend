@@ -33,7 +33,7 @@ describe('AuthenticateUser', () => {
 
     const authenticateUser = new AuthenticateUserService(fakeUsersRepository, fakeHashProvider);
 
-    expect(authenticateUser.execute({
+    await expect(authenticateUser.execute({
       email: 'johndoe@fake.com',
       password: 'abc123',
     })).rejects.toBeInstanceOf(AppError);
@@ -52,7 +52,7 @@ describe('AuthenticateUser', () => {
       password: 'abc123',
     });
     expect(user).toHaveProperty('id');
-    expect(authenticateUser.execute({
+    await expect(authenticateUser.execute({
       email: 'johndoe@fake.com',
       password: 'wrong-password',
     })).rejects.toBeInstanceOf(AppError);
