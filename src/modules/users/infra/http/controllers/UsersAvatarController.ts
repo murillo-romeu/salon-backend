@@ -1,14 +1,16 @@
 import { Request, Response } from 'express';
-import CreateUserService from '@modules/users/services/CreateUserService';
+
+import UpdateAvatarService from '@modules/users/services/UpdateUserAvatarService';
 import { container } from 'tsyringe';
 
 export default class UsersAvatarController {
   public async update(request: Request, response:Response): Promise<Response> {
-    const { name, email, password } = request.body;
+    const updateUserAvatar = container.resolve(UpdateAvatarService);
 
-    const createUser = container.resolve(CreateUserService);
-
-    const user = await createUser.execute({ name, email, password });
+    const user = await updateUserAvatar.execute({
+      user_id: request.user.id,
+      avatarFileName: request.file.filename,
+    });
 
     delete user.password;
 
