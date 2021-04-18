@@ -1,0 +1,4 @@
+/* eslint-disable semi */
+export default interface IFindAllProvidersDTO {
+  except_user_id?: string;
+}
