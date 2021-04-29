@@ -4,6 +4,7 @@ import User from '@modules/users/infra/typeorm/entities/User';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { classToClass } from 'class-transformer';
 
 interface IRequest{
   user_id: string;
@@ -30,7 +31,7 @@ class ListProvidersService {
         except_user_id: user_id,
       });
 
-      await this.cacheProvider.save(cacheKey, users);
+      await this.cacheProvider.save(cacheKey, classToClass(users));
     }
 
     return users;
