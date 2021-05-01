@@ -30,7 +30,7 @@ class Appointment {
   user: User;
 
   @Column('timestamp with time zone')
-  date: Date
+  date: Date;
 
   @CreateDateColumn()
   created_at: Date;

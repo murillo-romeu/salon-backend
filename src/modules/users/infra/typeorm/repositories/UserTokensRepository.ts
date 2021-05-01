@@ -3,7 +3,7 @@ import IUserTokensRepository from '@modules/users/repositories/IUserTokensReposi
 import UserToken from '@modules/users/infra/typeorm/entities/UserToken';
 
 class UserTokensRepository implements IUserTokensRepository {
-  private ormRepository: Repository<UserToken>
+  private ormRepository: Repository<UserToken>;
 
   constructor() {
     this.ormRepository = getRepository(UserToken);

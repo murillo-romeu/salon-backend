@@ -6,14 +6,14 @@ import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 
-interface IRequest{
+interface IRequest {
   email: string;
-  password: string
+  password: string;
 }
 
-interface IResponse{
-  user: User,
-  token: string
+interface IResponse {
+  user: User;
+  token: string;
 }
 @injectable()
 class AuthenticateUserService {
@@ -22,7 +22,7 @@ class AuthenticateUserService {
     private usersRepository: IUsersRepository,
 
     @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    private hashProvider: IHashProvider
   ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
@@ -32,7 +32,10 @@ class AuthenticateUserService {
       throw new AppError('Incorrect e-mail/password combination.', 401);
     }
 
-    const passwordMatched = await this.hashProvider.compareHash(password, user.password);
+    const passwordMatched = await this.hashProvider.compareHash(
+      password,
+      user.password
+    );
 
     if (!passwordMatched) {
       throw new AppError('Incorrect e-mail/password combination.', 401);

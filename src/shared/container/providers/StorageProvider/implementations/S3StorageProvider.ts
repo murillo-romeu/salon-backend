@@ -25,13 +25,15 @@ export default class S3StorageProvider implements IStorageProvider {
 
     const fileContent = await fs.promises.readFile(originalPath);
 
-    await this.client.putObject({
-      Bucket: uploadConfig.config.aws.bucket,
-      Key: file,
-      ACL: 'public-read',
-      Body: fileContent,
-      ContentType,
-    }).promise();
+    await this.client
+      .putObject({
+        Bucket: uploadConfig.config.aws.bucket,
+        Key: file,
+        ACL: 'public-read',
+        Body: fileContent,
+        ContentType,
+      })
+      .promise();
 
     fs.promises.unlink(originalPath);
 
@@ -39,9 +41,11 @@ export default class S3StorageProvider implements IStorageProvider {
   }
 
   async deleteFile(file: string): Promise<void> {
-    await this.client.deleteObject({
-      Bucket: uploadConfig.config.aws.bucket,
-      Key: file,
-    }).promise();
+    await this.client
+      .deleteObject({
+        Bucket: uploadConfig.config.aws.bucket,
+        Key: file,
+      })
+      .promise();
   }
 }

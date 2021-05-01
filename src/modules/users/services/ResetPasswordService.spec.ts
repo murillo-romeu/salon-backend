@@ -18,7 +18,7 @@ describe('ResetPassword', () => {
     resetPassword = new ResetPasswordService(
       fakeUsersRepository,
       fakeUserTokensRepository,
-      fakeHashProvider,
+      fakeHashProvider
     );
   });
 
@@ -49,18 +49,20 @@ describe('ResetPassword', () => {
       resetPassword.execute({
         token: 'non-existing-token',
         password: 'password-123',
-      }),
+      })
     ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should not be able to reset password with non-existing user', async () => {
-    const { token } = await fakeUserTokensRepository.generate('non-existing-user');
+    const { token } = await fakeUserTokensRepository.generate(
+      'non-existing-user'
+    );
 
     await expect(
       resetPassword.execute({
         token,
         password: 'password-123',
-      }),
+      })
     ).rejects.toBeInstanceOf(AppError);
   });
 
@@ -83,7 +85,7 @@ describe('ResetPassword', () => {
       resetPassword.execute({
         password: 'reset-password',
         token,
-      }),
+      })
     ).rejects.toBeInstanceOf(AppError);
   });
 });

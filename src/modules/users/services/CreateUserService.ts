@@ -20,10 +20,10 @@ class CreateUserService {
     private hashProvider: IHashProvider,
 
     @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
+    private cacheProvider: ICacheProvider
   ) {}
 
-  public async execute({ name, email, password } : IRequest): Promise<User> {
+  public async execute({ name, email, password }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {

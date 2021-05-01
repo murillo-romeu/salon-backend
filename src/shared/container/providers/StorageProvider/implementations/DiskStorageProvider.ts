@@ -7,7 +7,7 @@ export default class DiskStorageProvider implements IStorageProvider {
   async saveFile(file: string): Promise<string> {
     await fs.promises.rename(
       path.resolve(uploadConfig.tmpFolder, file),
-      path.resolve(uploadConfig.uploadsFolder, file),
+      path.resolve(uploadConfig.uploadsFolder, file)
     );
 
     return file;

@@ -13,7 +13,9 @@ class FakeUsersRepository implements IUsersRepository {
     return findUser;
   }
 
-  public async findAllProviders({ except_user_id }: IFindAllProvidersDTO): Promise<User[]> {
+  public async findAllProviders({
+    except_user_id,
+  }: IFindAllProvidersDTO): Promise<User[]> {
     let { users } = this;
 
     if (except_user_id) {
@@ -41,7 +43,7 @@ class FakeUsersRepository implements IUsersRepository {
 
   public async save(user: User): Promise<User> {
     const findIndex = this.users.findIndex(
-      (findUser) => findUser.id === user.id,
+      (findUser) => findUser.id === user.id
     );
 
     this.users[findIndex] = user;

@@ -6,7 +6,7 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { classToClass } from 'class-transformer';
 
-interface IRequest{
+interface IRequest {
   user_id: string;
 }
 @injectable()
@@ -16,12 +16,10 @@ class ListProvidersService {
     private usersRepository: IUsersRepository,
 
     @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
+    private cacheProvider: ICacheProvider
   ) {}
 
-  public async execute({
-    user_id,
-  }: IRequest): Promise<User[]> {
+  public async execute({ user_id }: IRequest): Promise<User[]> {
     const cacheKey = `providers-list:${user_id}`;
 
     let users = await this.cacheProvider.recover<User[]>(cacheKey);

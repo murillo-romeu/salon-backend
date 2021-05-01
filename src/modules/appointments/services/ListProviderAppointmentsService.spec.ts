@@ -13,7 +13,7 @@ describe('ListProviderAppointments', () => {
     fakeCacheProvider = new FakeCacheProvider();
     listProviderAppointments = new ListProviderAppointmentsService(
       fakeAppointmentsRepository,
-      fakeCacheProvider,
+      fakeCacheProvider
     );
   });
 

@@ -5,7 +5,7 @@ import IFindAllProvidersDTO from '@modules/users/dtos/IFIndAllProvidersDTO';
 import User from '@modules/users/infra/typeorm/entities/User';
 
 class UsersRepository implements IUsersRepository {
-  private ormRepository: Repository<User>
+  private ormRepository: Repository<User>;
 
   constructor() {
     this.ormRepository = getRepository(User);
@@ -17,7 +17,9 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  public async findAllProviders({ except_user_id }: IFindAllProvidersDTO): Promise<User[]> {
+  public async findAllProviders({
+    except_user_id,
+  }: IFindAllProvidersDTO): Promise<User[]> {
     let users: User[];
     if (except_user_id) {
       users = await this.ormRepository.find({

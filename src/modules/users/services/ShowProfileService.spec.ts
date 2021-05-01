@@ -9,9 +9,7 @@ describe('ShowProfileService', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
 
-    showProfile = new ShowProfileService(
-      fakeUsersRepository,
-    );
+    showProfile = new ShowProfileService(fakeUsersRepository);
   });
 
   it('should be able show the profile', async () => {
@@ -29,8 +27,10 @@ describe('ShowProfileService', () => {
   });
 
   it('should no be able to show profile from non existing user', async () => {
-    await expect(showProfile.execute({
-      user_id: 'non-existing-user',
-    })).rejects.toBeInstanceOf(AppError);
+    await expect(
+      showProfile.execute({
+        user_id: 'non-existing-user',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

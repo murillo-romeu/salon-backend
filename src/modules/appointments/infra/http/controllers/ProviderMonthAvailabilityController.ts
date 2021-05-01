@@ -7,7 +7,9 @@ export default class ProviderMonthAvailabilityController {
     const { month, year } = request.query;
     const { provider_id } = request.params;
 
-    const listProviderMonthAvailability = container.resolve(ListProviderMonthAvailabilityService);
+    const listProviderMonthAvailability = container.resolve(
+      ListProviderMonthAvailabilityService
+    );
 
     const availability = await listProviderMonthAvailability.execute({
       month: Number(month),

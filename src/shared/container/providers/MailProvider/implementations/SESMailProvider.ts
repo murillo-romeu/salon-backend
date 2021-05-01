@@ -14,7 +14,7 @@ export default class SESMailProvider implements IMailProvider {
 
   constructor(
     @inject('MailTemplateProvider')
-    private MailTemplateProvider: IMailTemplateProvider,
+    private MailTemplateProvider: IMailTemplateProvider
   ) {
     const ses = new aws.SES({
       apiVersion: '2010-12-01',
@@ -27,7 +27,10 @@ export default class SESMailProvider implements IMailProvider {
   }
 
   public async sendMail({
-    to, from, subject, templateData,
+    to,
+    from,
+    subject,
+    templateData,
   }: ISendMailDTO): Promise<void> {
     const { name, email } = mailConfig.defaults.from;
 

@@ -4,7 +4,7 @@ import ICreateNotificationDTO from '@modules/notifications/dtos/ICreateNotificat
 import Notification from '@modules/notifications/infra/typeorm/schemas/Notification';
 
 class NotificationsRepository implements INotificationsRepository {
-  private ormRepository: MongoRepository<Notification>
+  private ormRepository: MongoRepository<Notification>;
 
   constructor() {
     this.ormRepository = getMongoRepository(Notification, 'mongo');

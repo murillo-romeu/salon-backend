@@ -13,20 +13,24 @@ const providerDayAvailabilityController = new ProviderDayAvailabilityController(
 const providerMonthAvailabilityController = new ProviderMonthAvailabilityController();
 
 providersRouter.get('/', providersController.index);
-providersRouter.get('/:provider_id/month-availability',
+providersRouter.get(
+  '/:provider_id/month-availability',
   celebrate({
     [Segments.PARAMS]: {
       provider_id: Joi.string().uuid().required(),
     },
   }),
-  providerMonthAvailabilityController.index);
+  providerMonthAvailabilityController.index
+);
 
-providersRouter.get('/:provider_id/day-availability',
+providersRouter.get(
+  '/:provider_id/day-availability',
   celebrate({
     [Segments.PARAMS]: {
       provider_id: Joi.string().uuid().required(),
     },
   }),
-  providerDayAvailabilityController.index);
+  providerDayAvailabilityController.index
+);
 
 export default providersRouter;

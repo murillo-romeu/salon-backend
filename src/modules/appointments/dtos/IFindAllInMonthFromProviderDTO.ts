@@ -1,6 +1,6 @@
 /* eslint-disable semi */
-export default interface IFindAllInMonthFromProviderDTO{
+export default interface IFindAllInMonthFromProviderDTO {
   provider_id: string;
   month: number;
-  year: number
+  year: number;
 }

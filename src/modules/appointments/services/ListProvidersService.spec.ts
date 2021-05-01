@@ -13,7 +13,7 @@ describe('ListProviders', () => {
 
     listProviders = new ListProvidersService(
       fakeUsersRepository,
-      fakeCacheProvider,
+      fakeCacheProvider
     );
   });
 
@@ -40,9 +40,6 @@ describe('ListProviders', () => {
       user_id: logedUser.id,
     });
 
-    expect(providers).toEqual([
-      fake1,
-      fake2,
-    ]);
+    expect(providers).toEqual([fake1, fake2]);
   });
 });

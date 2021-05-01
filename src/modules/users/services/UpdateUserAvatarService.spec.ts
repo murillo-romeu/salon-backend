@@ -14,7 +14,7 @@ describe('UpdateUserAvatar', () => {
 
     updateUserAvatar = new UpdateUserAvatarService(
       fakeUsersRepository,
-      fakeStorageProvider,
+      fakeStorageProvider
     );
   });
 
@@ -34,10 +34,12 @@ describe('UpdateUserAvatar', () => {
   });
 
   it('should no be able to update avatar from non existing user', async () => {
-    await expect(updateUserAvatar.execute({
-      user_id: 'non-existing-user',
-      avatarFileName: 'avatarFileName.jpg',
-    })).rejects.toBeInstanceOf(AppError);
+    await expect(
+      updateUserAvatar.execute({
+        user_id: 'non-existing-user',
+        avatarFileName: 'avatarFileName.jpg',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should delete old avatar when updating new one', async () => {

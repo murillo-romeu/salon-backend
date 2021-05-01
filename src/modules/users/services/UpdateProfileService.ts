@@ -6,7 +6,7 @@ import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 
-interface IRequest{
+interface IRequest {
   user_id: string;
   name: string;
   email: string;
@@ -20,7 +20,7 @@ class UpdateProfileService {
     private usersRepository: IUsersRepository,
 
     @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    private hashProvider: IHashProvider
   ) {}
 
   public async execute({
@@ -43,13 +43,15 @@ class UpdateProfileService {
     }
 
     if (password && !old_password) {
-      throw new AppError('You need to inform the old password do ser a new password');
+      throw new AppError(
+        'You need to inform the old password do ser a new password'
+      );
     }
 
     if (password && old_password) {
       const checkOldPassword = await this.hashProvider.compareHash(
         old_password,
-        user.password,
+        user.password
       );
 
       if (!checkOldPassword) {

@@ -5,19 +5,17 @@ import AppError from '@shared/errors/AppError';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
-interface IRequest{
+interface IRequest {
   user_id: string;
 }
 @injectable()
 class ShowProfileService {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
+    private usersRepository: IUsersRepository
   ) {}
 
-  public async execute({
-    user_id,
-  }: IRequest): Promise<User> {
+  public async execute({ user_id }: IRequest): Promise<User> {
     const user = await this.usersRepository.findByID(user_id);
 
     if (!user) {

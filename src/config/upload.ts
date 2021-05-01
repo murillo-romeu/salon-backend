@@ -15,8 +15,8 @@ interface IUploadConfig {
   config: {
     aws: {
       bucket: string;
-    }
-  }
+    };
+  };
 }
 
 export default {
@@ -41,5 +41,4 @@ export default {
       bucket: 'app-salon',
     },
   },
-
 } as IUploadConfig;

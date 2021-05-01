@@ -4,9 +4,9 @@ import User from '@modules/users/infra/typeorm/entities/User';
 import AppError from '@shared/errors/AppError';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import IStorageProvider, {} from '@shared/container/providers/StorageProvider/models/IStorageProvider';
+import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 
-interface IRequest{
+interface IRequest {
   user_id: string;
   avatarFileName: string;
 }
@@ -17,7 +17,7 @@ class UpdateUserAvatarService {
     private usersRepository: IUsersRepository,
 
     @inject('StorageProvider')
-    private storageProvider: IStorageProvider,
+    private storageProvider: IStorageProvider
   ) {}
 
   public async execute({ user_id, avatarFileName }: IRequest): Promise<User> {

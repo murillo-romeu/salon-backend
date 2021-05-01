@@ -16,7 +16,7 @@ describe('CreateUser', () => {
     createUser = new CreateUserService(
       fakeUsersRepository,
       fakeHashProvider,
-      fakeCacheProvider,
+      fakeCacheProvider
     );
   });
 
@@ -37,10 +37,12 @@ describe('CreateUser', () => {
       password: 'abc123',
     });
 
-    await expect(createUser.execute({
-      name: 'John Doe',
-      email: 'johndoe@fake.com',
-      password: 'abc123',
-    })).rejects.toBeInstanceOf(AppError);
+    await expect(
+      createUser.execute({
+        name: 'John Doe',
+        email: 'johndoe@fake.com',
+        password: 'abc123',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

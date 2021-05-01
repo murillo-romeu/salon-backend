@@ -18,10 +18,10 @@ class SendForgotPasswordEmailService {
     private mailProvider: IMailProvider,
 
     @inject('UserTokensRepository')
-    private userTokensRepository: IUserTokensRepository,
+    private userTokensRepository: IUserTokensRepository
   ) {}
 
-  public async execute({ email } : IRequest): Promise<void> {
+  public async execute({ email }: IRequest): Promise<void> {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
@@ -34,7 +34,7 @@ class SendForgotPasswordEmailService {
       __dirname,
       '..',
       'views',
-      'forgot_password.hbs',
+      'forgot_password.hbs'
     );
 
     await this.mailProvider.sendMail({

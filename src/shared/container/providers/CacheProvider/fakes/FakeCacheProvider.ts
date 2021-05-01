@@ -5,7 +5,7 @@ interface ICacheData {
 }
 
 export default class RedisCacheProvider implements ICacheProvider {
-  private cache: ICacheData = {}
+  private cache: ICacheData = {};
 
   public async save(key: string, value: any): Promise<void> {
     this.cache[key] = JSON.stringify(value);
@@ -28,8 +28,8 @@ export default class RedisCacheProvider implements ICacheProvider {
   }
 
   public async invalidatePrefix(prefix: string): Promise<void> {
-    const keys = Object.keys(this.cache).filter(
-      (key) => key.startsWith(`${prefix}:`),
+    const keys = Object.keys(this.cache).filter((key) =>
+      key.startsWith(`${prefix}:`)
     );
 
     keys.forEach((key) => {

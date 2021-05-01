@@ -9,7 +9,7 @@ describe('ListProviderMonthAvailability', () => {
   beforeEach(() => {
     fakeAppointmentsRepository = new FakeAppointmentsRepository();
     listProviderMonthAvailability = new ListProviderMonthAvailabilityService(
-      fakeAppointmentsRepository,
+      fakeAppointmentsRepository
     );
   });
 
@@ -34,11 +34,13 @@ describe('ListProviderMonthAvailability', () => {
       month: 5,
     });
 
-    expect(availability).toEqual(expect.arrayContaining([
-      { day: 19, available: true },
-      { day: 20, available: false },
-      { day: 21, available: true },
-      { day: 22, available: true },
-    ]));
+    expect(availability).toEqual(
+      expect.arrayContaining([
+        { day: 19, available: true },
+        { day: 20, available: false },
+        { day: 21, available: true },
+        { day: 22, available: true },
+      ])
+    );
   });
 });

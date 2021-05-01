@@ -1,6 +1,4 @@
-import {
-  startOfHour, isBefore, getHours, format,
-} from 'date-fns';
+import { startOfHour, isBefore, getHours, format } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import Appointment from '@modules/appointments/infra/typeorm/entities/Appointments';
@@ -23,7 +21,7 @@ class CreateAppointmentService {
     private notificationsRepository: INotificationsRepository,
 
     @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
+    private cacheProvider: ICacheProvider
   ) {}
 
   public async execute({
@@ -43,14 +41,17 @@ class CreateAppointmentService {
     }
 
     if (getHours(appointmentDate) < 8 || getHours(appointmentDate) > 17) {
-      throw new AppError('You can only create appointments between 8am and 7pm', 400);
+      throw new AppError(
+        'You can only create appointments between 8am and 7pm',
+        400
+      );
     }
 
     const findAppointmentInSameDate = await this.appointmentsRepository.findByDate(
       {
         date: appointmentDate,
         provider_id,
-      },
+      }
     );
 
     if (findAppointmentInSameDate) {
@@ -70,7 +71,10 @@ class CreateAppointmentService {
       content: `Novo agendamento dia ${dateFormat}`,
     });
 
-    const cacheKey = `provider-appointments:${provider_id}:${format(appointmentDate, 'yyyy-M-d')}`;
+    const cacheKey = `provider-appointments:${provider_id}:${format(
+      appointmentDate,
+      'yyyy-M-d'
+    )}`;
 
     await this.cacheProvider.invalidate(cacheKey);
 

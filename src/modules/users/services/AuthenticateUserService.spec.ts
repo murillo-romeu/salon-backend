@@ -12,7 +12,10 @@ describe('AuthenticateUser', () => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeHashProvider = new FakeHashProvider();
 
-    authenticateUser = new AuthenticateUserService(fakeUsersRepository, fakeHashProvider);
+    authenticateUser = new AuthenticateUserService(
+      fakeUsersRepository,
+      fakeHashProvider
+    );
   });
 
   it('should be able to authenticate', async () => {
@@ -32,10 +35,12 @@ describe('AuthenticateUser', () => {
   });
 
   it('should not be able to authenticate with non existing user', async () => {
-    await expect(authenticateUser.execute({
-      email: 'johndoe@fake.com',
-      password: 'abc123',
-    })).rejects.toBeInstanceOf(AppError);
+    await expect(
+      authenticateUser.execute({
+        email: 'johndoe@fake.com',
+        password: 'abc123',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should not be able to authenticate with wrong password', async () => {
@@ -45,9 +50,11 @@ describe('AuthenticateUser', () => {
       password: 'abc123',
     });
     expect(user).toHaveProperty('id');
-    await expect(authenticateUser.execute({
-      email: 'johndoe@fake.com',
-      password: 'wrong-password',
-    })).rejects.toBeInstanceOf(AppError);
+    await expect(
+      authenticateUser.execute({
+        email: 'johndoe@fake.com',
+        password: 'wrong-password',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

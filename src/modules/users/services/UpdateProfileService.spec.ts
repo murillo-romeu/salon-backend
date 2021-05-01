@@ -14,7 +14,7 @@ describe('UpdateProfileService', () => {
 
     updateProfileService = new UpdateProfileService(
       fakeUsersRepository,
-      fakeHashProvider,
+      fakeHashProvider
     );
   });
 
@@ -55,11 +55,13 @@ describe('UpdateProfileService', () => {
   });
 
   it('should no be able to update user profile from non existing user', async () => {
-    await expect(updateProfileService.execute({
-      user_id: 'non-existing-user',
-      name: 'John Doe Update',
-      email: 'johndoe@fakeupdate.com',
-    })).rejects.toBeInstanceOf(AppError);
+    await expect(
+      updateProfileService.execute({
+        user_id: 'non-existing-user',
+        name: 'John Doe Update',
+        email: 'johndoe@fakeupdate.com',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should no be able to update user profile with e-mail already in use', async () => {
@@ -75,11 +77,13 @@ describe('UpdateProfileService', () => {
       password: 'abc123',
     });
 
-    await expect(updateProfileService.execute({
-      user_id: userUpdate.id,
-      name: 'John Doe',
-      email: 'johndoe@fake.com',
-    })).rejects.toBeInstanceOf(AppError);
+    await expect(
+      updateProfileService.execute({
+        user_id: userUpdate.id,
+        name: 'John Doe',
+        email: 'johndoe@fake.com',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should no be able to update user profile with not inform old password', async () => {
@@ -89,12 +93,14 @@ describe('UpdateProfileService', () => {
       password: 'abc123',
     });
 
-    await expect(updateProfileService.execute({
-      user_id: user.id,
-      name: 'John Doe',
-      email: 'johndoe@fake.com',
-      password: 'new-password',
-    })).rejects.toBeInstanceOf(AppError);
+    await expect(
+      updateProfileService.execute({
+        user_id: user.id,
+        name: 'John Doe',
+        email: 'johndoe@fake.com',
+        password: 'new-password',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should no be able to update user profile with old password does not match', async () => {
@@ -104,12 +110,14 @@ describe('UpdateProfileService', () => {
       password: 'abc123',
     });
 
-    await expect(updateProfileService.execute({
-      user_id: user.id,
-      name: 'John Doe',
-      email: 'johndoe@fake.com',
-      password: 'new-password',
-      old_password: 'old-password',
-    })).rejects.toBeInstanceOf(AppError);
+    await expect(
+      updateProfileService.execute({
+        user_id: user.id,
+        name: 'John Doe',
+        email: 'johndoe@fake.com',
+        password: 'new-password',
+        old_password: 'old-password',
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
